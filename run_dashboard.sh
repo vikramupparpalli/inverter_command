@@ -1,7 +1,16 @@
 #!/bin/bash
 # Motor Controller Command Flow Dashboard Launcher
 
-cd /home/vikramupparpalli/inverter_command
+set -euo pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+VENV_DIR="$SCRIPT_DIR/.venv"
+
+if [[ ! -x "$VENV_DIR/bin/python" ]]; then
+	python3 -m venv "$VENV_DIR"
+fi
+
+"$VENV_DIR/bin/python" -m pip install -r "$SCRIPT_DIR/requirements.txt"
 
 echo "🚀 Starting Motor Controller Command Flow Dashboard..."
 echo ""
@@ -18,4 +27,4 @@ echo ""
 echo "📝 To stop the dashboard: Press Ctrl+C"
 echo ""
 
-python3 -m streamlit run dashboard.py
+exec "$VENV_DIR/bin/python" -m streamlit run "$SCRIPT_DIR/dashboard.py"

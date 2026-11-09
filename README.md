@@ -4,11 +4,17 @@ Interactive dashboard for analyzing Motor Controller inverter commands from CSV 
 
 ## Quick Start
 
+Requirements: Python 3.10 or newer, with the `venv` module available. On some Linux distributions, install it with `sudo apt install python3-venv`.
+
+Clone the repository, enter its directory, and start the dashboard:
+
 ```bash
+git clone <repository-url>
+cd inverter_command
 ./run_dashboard.sh
 ```
 
-Then open http://localhost:8501 in your browser and upload your CSV file.
+The launcher creates a local `.venv`, installs the required packages, and starts the dashboard. Open http://localhost:8501 in your browser and upload your CSV file. Run `./run_dashboard.sh` again to start it later; dependencies are checked on each launch.
 
 ## Files
 
@@ -134,15 +140,13 @@ Maximum target speed: ±800 RPM (test data shows -652 to 651 for Agitate)
 
 ## Dependencies
 
-- Python 3.8+
-- pandas
-- streamlit
-- plotly
-- struct (standard library)
+- Python 3.10+
+- Packages listed in [requirements.txt](requirements.txt)
+- `struct` (Python standard library)
 
-Install with:
+To install the packages manually instead of using the launcher:
 ```bash
-pip install pandas streamlit plotly
+python3 -m pip install -r requirements.txt
 ```
 
 ## Usage Examples
